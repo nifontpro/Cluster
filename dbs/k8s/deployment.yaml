@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-api
+  labels:
+    app: user-api
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      # (1) link :
+      app: user-api
+
+# Стратегия обновления
+  strategy:
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
+
+#      параметры запуска:
+  template:
+    metadata:
+      labels:
+        # (1) link ^
+        app: user-api
+    spec:
+      containers:
+        - name: user-api
+          image: 8881981/user:1.0.1
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: my-config
+#          env:
+#            - name: DATA_HOST
+#              value: 192.168.0.10
+##            - name: spring.mvc.servlet.path
+##              value: /user-api
+#            - name: PREFIX_URL
+#              value: /user
+
+          # Приложение готово принимать запросы (если перегружено - не готово)
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8090
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          # Приложение живое (если перегружено - живое)
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8090
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+            initialDelaySeconds: 10

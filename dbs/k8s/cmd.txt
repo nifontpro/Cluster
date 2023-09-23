@@ -1,0 +1,25 @@
+kubectl apply -f .
+kubectl apply -f k8s/deployment.yaml
+kubectl get pods
+kubectl get pods -w
+kubectl delete deployments --all
+kubectl logs ... -f
+kubectl port-forward cats-api-7b7494d4db-krrv8  8899:8080
+kubectl apply -f k8s/service.yaml
+kubectl get service
+kubectl get endpoints
+
+kind load docker-image 8881981/cat:1
+
+ipconfig getifaddr en0
+192.168.1.145
+
+kubectl run -i --tty busybox --image=busybox -- sh
+kubectl attach pod/busybox -i -t
+
+kubectl run -t -i --rm --image amouat/network-utils test bash
+kubectl delete pod test
+
+wget cats-api/cats-api/all -O -
+nslookup cats-api
+printenv | grep CATS_API

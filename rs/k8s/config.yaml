@@ -1,0 +1,8 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rs-config
+data:
+  JAVA_TOOL_OPTIONS: '-XX:MaxRAMPercentage=80'
+  PREFIX_URL: '/rs'
