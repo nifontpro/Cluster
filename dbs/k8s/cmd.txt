@@ -2,7 +2,9 @@ kubectl apply -f .
 kubectl apply -f k8s/deployment.yaml
 kubectl get pods
 kubectl get pods -w
+kubectl delete deployment user-api
 kubectl delete deployments --all
+kubectl rollout restart deployments/user-api
 kubectl logs ... -f
 kubectl port-forward cats-api-7b7494d4db-krrv8  8899:8080
 kubectl apply -f k8s/service.yaml

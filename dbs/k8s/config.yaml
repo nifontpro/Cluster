@@ -8,3 +8,4 @@ data:
   JAVA_TOOL_OPTIONS: '-XX:+UseContainerSupport -XX:MaxRAMPercentage=80'
   DATA_HOST: '192.168.1.145'
   PREFIX_URL: '/user'
+  RS_URL: 'rs-api/rs/'

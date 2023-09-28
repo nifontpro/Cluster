@@ -27,19 +27,12 @@ spec:
     spec:
       containers:
         - name: user-api
-          image: 8881981/user:1.0.1
+          image: 8881981/user:1.0.2
           ports:
             - containerPort: 8080
           envFrom:
             - configMapRef:
                 name: my-config
-#          env:
-#            - name: DATA_HOST
-#              value: 192.168.0.10
-##            - name: spring.mvc.servlet.path
-##              value: /user-api
-#            - name: PREFIX_URL
-#              value: /user
 
           # Приложение готово принимать запросы (если перегружено - не готово)
           readinessProbe:
