@@ -1,0 +1,39 @@
+# https://kubernetes.io/docs/concepts/services-networking/ingress/
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nifont
+#  annotations:
+#    kubernetes.io/ingress.class: "nginx"
+spec:
+#  ingressClassName: nginx-example
+  tls:
+    - hosts:
+        - k8s-master.md.net
+  rules:
+    - host: k8s-master.md.net
+      http:
+        paths:
+          - path: /user
+            pathType: Prefix
+            backend:
+              service:
+                name: user-api
+                port:
+                  number: 80
+
+          - path: /rs
+            pathType: Prefix
+            backend:
+              service:
+                name: rs-api
+                port:
+                  number: 80
+
+#          - path: /spring-admin
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: spring-admin
+#                port:
+#                  number: 80

@@ -6,7 +6,7 @@ metadata:
     app: rs-api
 
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       # (1) link :
@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: rs-api
-          image: 8881981/rs:1.0.1
+          image: 8881981/rs:1.0.2
           ports:
             - containerPort: 8081
           envFrom:

@@ -3,7 +3,7 @@ package ru.nb.dbs.db
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "usr", schema = "usr", catalog = "medalist")
+@Table(name = "user_data", schema = "users", catalog = "medalist")
 class UserEntity(
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
