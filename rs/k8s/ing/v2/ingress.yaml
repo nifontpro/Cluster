@@ -2,13 +2,15 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nifont
-  annotations:
-    kubernetes.io/ingress.class: "nginx"
+  namespace: ingress-nginx
+  name: nginx
+#  labels:
+#    app: nginx
 spec:
-#  ingressClassName: nginx-example
+  ingressClassName: nginx
   rules:
-    - http:
+    - host: k8s-master.md.net
+      http:
         paths:
           - path: /rs
             pathType: Prefix

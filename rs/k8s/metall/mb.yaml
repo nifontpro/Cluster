@@ -6,7 +6,11 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-    - 10.200.70.211-10.200.70.213
+#    kubectl get nodes -o wide
+#    kubectl -n ingress-nginx get svc
+    - 10.200.70.220-10.200.70.223
+#    - 176.53.163.61
+
   autoAssign: true
 ---
 apiVersion: metallb.io/v1beta1

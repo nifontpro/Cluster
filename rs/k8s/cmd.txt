@@ -45,3 +45,19 @@ kubectl create ingress nifont --class=nginx \
   --rule="www.77.232.130.12/*=nifont:80"
 
   https://nixhub.ru/posts/k8s-cluster-access/
+
+brew install wget
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
+kubectl wait --namespace ingress-nginx \
+  --for=condition=ready pod \
+  --selector=app.kubernetes.io/component=controller \
+  --timeout=90s
+
+kubectl get nodes -o wide
+kubectl -n ingress-nginx get svc
+
+https://youtu.be/tugVLWBk_IA?list=PLh6NmZhzxiwu7kdTtJeFsUwtVULdLTi7N
+kubectl port-forward -n ingress-nginx --address 176.53.163.61 svc/ingress-nginx-controller 80:80&
